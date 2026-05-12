@@ -585,13 +585,37 @@
 <script>
   function scrollCarousel(direction) {
     const track = document.getElementById('carousel-track');
-    // Obliczamy szerokość jednego elementu, aby przewijać precyzyjnie o jeden obrazek
-    const scrollAmount = track.clientWidth * 0.8; 
-    if (direction === 'left') {
-      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
+    if (!track) return;
+
+    const items = Array.from(track.querySelectorAll('img'));
+    if (!items.length) return;
+
+    const trackCenter = track.scrollLeft + track.clientWidth / 2;
+    let activeIndex = 0;
+    let smallestDistance = Number.POSITIVE_INFINITY;
+
+    items.forEach((item, index) => {
+      const itemCenter = item.offsetLeft + item.clientWidth / 2;
+      const distance = Math.abs(itemCenter - trackCenter);
+
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        activeIndex = index;
+      }
+    });
+
+    const nextIndex =
+      direction === 'left'
+        ? Math.max(0, activeIndex - 1)
+        : Math.min(items.length - 1, activeIndex + 1);
+
+    const nextItem = items[nextIndex];
+    const targetLeft = nextItem.offsetLeft - (track.clientWidth - nextItem.clientWidth) / 2;
+
+    track.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: 'smooth'
+    });
   }
 </script>
 
@@ -609,9 +633,6 @@
           >
             Zapisuję się na kurs
           </a>
-          <h2>
-            dzisiaj jest znizka co, jesli nie zdazych to miejsce przepadnie
-          </h2>
         </div>
       </section>
 
