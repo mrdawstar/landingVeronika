@@ -1,0 +1,15 @@
+<svg width="900" height="1080" viewBox="0 0 900 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1080" rx="48" fill="#F7E9DE"/>
+  <rect x="64" y="64" width="772" height="952" rx="36" fill="#FCF7F1"/>
+  <circle cx="622" cy="230" r="124" fill="#E8C8B8"/>
+  <circle cx="256" cy="900" r="170" fill="#D8E0D1"/>
+  <path d="M632 380C632 518.071 555.979 612 462 612C368.021 612 292 518.071 292 380C292 241.929 368.021 148 462 148C555.979 148 632 241.929 632 380Z" fill="#F2D5C5"/>
+  <path d="M325 420C325 281.929 390.294 180 470.5 180C550.706 180 616 281.929 616 420V461C616 599.071 550.706 701 470.5 701C390.294 701 325 599.071 325 461V420Z" fill="#5C4035"/>
+  <path d="M350 432C350 333.127 405.964 254 474.5 254C543.036 254 599 333.127 599 432V462C599 560.873 543.036 640 474.5 640C405.964 640 350 560.873 350 462V432Z" fill="#F4DACA"/>
+  <path d="M441 430C441 421.716 447.716 415 456 415H494C502.284 415 509 421.716 509 430V439C509 447.284 502.284 454 494 454H456C447.716 454 441 447.284 441 439V430Z" fill="#5C4035" fill-opacity="0.18"/>
+  <path d="M434 467C461.995 487.028 489.245 487.009 517 467" stroke="#AE705A" stroke-width="11" stroke-linecap="round"/>
+  <path d="M282 926C282 784.87 396.37 670.5 537.5 670.5C678.63 670.5 793 784.87 793 926V1016H282V926Z" fill="#C38B75"/>
+  <path d="M372 736C372 694.026 406.026 660 448 660H555C596.974 660 631 694.026 631 736V790H372V736Z" fill="#F4DACA"/>
+  <path d="M210 970C278 889.333 388.333 849 541 849C693.667 849 792.333 889.333 837 970" stroke="#FCF7F1" stroke-width="8" stroke-linecap="round" stroke-opacity="0.75"/>
+  <text x="450" y="920" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="700" fill="#6F6159">Tu wstaw swoje zdjecie</text>
+</svg>

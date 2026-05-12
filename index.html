@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Wakacyjny kurs języka angielskiego dla osób na poziomie A2/B1, które chcą przełamać blokadę w mówieniu."
+    />
+    <title>Wakacyjny kurs języka angielskiego</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              beige: "#F5F5DC",
+              cream: "#FFFDD0",
+              olive: "#556B2F",
+              oliveSoft: "#6F7F4E",
+              ink: "#2F3426",
+              mist: "#EEF0DE",
+            },
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 24px 60px rgba(85, 107, 47, 0.10)",
+              card: "0 14px 36px rgba(47, 52, 38, 0.07)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(180deg, #fffef6 0%, #fbf8ee 45%, #f5f5dc 100%);
+        overflow-x: hidden;
+      }
+
+      .hero-portrait {
+        object-fit: cover;
+        object-position: top;
+        transform: scale(1.03) translateY(-2.5%);
+      }
+
+      .about-portrait {
+        object-fit: cover;
+        object-position: top;
+      }
+
+      .carousel-shell {
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      }
+
+      .carousel-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 42s linear infinite;
+      }
+
+      .carousel-shell:hover .carousel-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .faq-panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.25s ease;
+      }
+
+      .faq-panel > div {
+        overflow: hidden;
+      }
+
+      .faq-item[data-open="true"] .faq-panel {
+        grid-template-rows: 1fr;
+      }
+
+      .faq-item[data-open="true"] .faq-plus {
+        transform: rotate(45deg);
+      }
+
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+        transition-delay: var(--reveal-delay, 0ms);
+        will-change: opacity, transform;
+      }
+
+      .reveal-on-scroll.reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .carousel-track {
+          animation: none;
+        }
+
+        .scroll-smooth {
+          scroll-behavior: auto;
+        }
+
+        .reveal-on-scroll {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+    </style>
+  </head>
+  <body class="font-sans text-ink antialiased">
+    <header class="sticky top-0 z-50 border-b border-olive/10 bg-[#fffef6]/85 backdrop-blur-xl">
+      <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+        <a href="#top" class="flex items-center gap-3">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-olive text-base font-bold text-cream shadow-card">V</span>
+          <div class="leading-tight">
+            <p class="text-sm font-semibold text-ink">Veronika English</p>
+            <p class="text-xs text-ink/55">wakacyjny kurs języka angielskiego</p>
+          </div>
+        </a>
+
+        <nav class="hidden items-center gap-7 text-sm font-medium text-ink/72 lg:flex">
+          <a class="transition hover:text-olive" href="#top">Start</a>
+          <a class="transition hover:text-olive" href="#o-kursie">Kurs</a>
+          <a class="transition hover:text-olive" href="#o-mnie">O mnie</a>
+          <a class="transition hover:text-olive" href="#jak-pracujemy">Jak pracujemy</a>
+          <a class="transition hover:text-olive" href="#cennik">Cennik</a>
+          <a class="transition hover:text-olive" href="#opinie">Opinie</a>
+          <a class="transition hover:text-olive" href="#faq">FAQ</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="#kontakt"
+            class="hidden rounded-full bg-olive px-5 py-3 text-sm font-semibold text-cream shadow-soft transition hover:bg-oliveSoft md:inline-flex"
+          >
+            Zapisuję się
+          </a>
+
+          <button
+            type="button"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-olive ring-1 ring-olive/10 transition hover:bg-white lg:hidden"
+            aria-label="Otwórz menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            data-menu-toggle
+          >
+            <i data-lucide="menu" class="h-5 w-5"></i>
+          </button>
+        </div>
+      </div>
+
+    </header>
+
+    <div
+      id="mobile-menu"
+      class="fixed inset-x-0 top-[88px] z-40 hidden px-4 lg:hidden"
+      data-mobile-menu
+    >
+      <div class="mx-auto w-full max-w-7xl rounded-[1.75rem] border border-olive/10 bg-[#fffdf5] p-3 shadow-soft">
+        <nav class="flex flex-col gap-2 text-sm font-medium text-ink/78">
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#top" data-mobile-link>Start</a>
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#o-kursie" data-mobile-link>Kurs</a>
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#o-mnie" data-mobile-link>O mnie</a>
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#jak-pracujemy" data-mobile-link>Jak pracujemy</a>
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#cennik" data-mobile-link>Cennik</a>
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#opinie" data-mobile-link>Opinie</a>
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#kontakt" data-mobile-link>Kontakt</a>
+          <a class="rounded-2xl px-4 py-3 transition hover:bg-beige hover:text-olive" href="#faq" data-mobile-link>FAQ</a>
+          <a
+            href="#kontakt"
+            class="mt-2 inline-flex items-center justify-center rounded-full bg-olive px-5 py-3 text-sm font-semibold text-cream shadow-soft"
+            data-mobile-link
+          >
+            Zapisuję się
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <main id="top">
+      <section class="scroll-mt-28 bg-gradient-to-b from-[#fffef8] via-[#fbf8ef] to-[#f7f4e8] px-5 pb-20 pt-10 md:px-8 md:pb-28 md:pt-16">
+        <div class="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.96fr_1.04fr] lg:gap-16">
+<div class="order-1 mx-auto w-full max-w-[34rem] lg:order-2">
+  <img
+    src="veronika.png"
+    alt="Wakacyjny kurs języka angielskiego"
+    class="hero-portrait aspect-[0.78] w-full rounded-[2rem] md:aspect-[0.82] md:rounded-[2.5rem] object-cover"
+  />
+</div>
+
+          <div class="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+            <h1 class="max-w-3xl text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+              Wakacyjny kurs języka angielskiego
+            </h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/75 sm:text-xl">
+              Przełam swoją blokadę w rozmowie na zagranicznych wakacjach, w codziennych czynnościach czy w pracy.
+            </p>
+            <a
+              href="#jak-pracujemy"
+              class="mt-8 inline-flex items-center justify-center rounded-full bg-olive px-8 py-4 text-base font-semibold text-cream shadow-soft transition hover:bg-oliveSoft"
+            >
+              Sprawdzam szczegóły
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-gradient-to-b from-[#f7f4e8] via-[#f5f3e6] to-[#f6f3e7] px-5 py-16 md:px-8 md:py-24">
+        <div class="mx-auto grid w-full max-w-7xl gap-5 md:grid-cols-3">
+          <article class="rounded-[2rem] bg-white/60 p-8 text-center shadow-card">
+            <p class="text-3xl font-extrabold text-olive sm:text-4xl">6+</p>
+            <p class="mt-3 text-lg font-semibold leading-7 text-ink">
+              lat doświadczenia w nauczaniu angielskiego
+            </p>
+          </article>
+          <article class="rounded-[2rem] bg-white/60 p-8 text-center shadow-card">
+            <p class="text-3xl font-extrabold text-olive sm:text-4xl">250+</p>
+            <p class="mt-3 text-lg font-semibold leading-7 text-ink">
+              kursantów, którzy przełamali blokadę językową
+            </p>
+          </article>
+          <article class="rounded-[2rem] bg-white/60 p-8 text-center shadow-card">
+            <p class="text-3xl font-extrabold text-olive sm:text-4xl">1000+</p>
+            <p class="mt-3 text-lg font-semibold leading-7 text-ink">
+              godzin przeprowadzonych zajęć speakingowych
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="o-kursie" class="scroll-mt-28 bg-gradient-to-b from-[#f6f3e7] via-[#f7f5ea] to-[#faf7ee] px-5 py-16 md:px-8 md:py-24">
+        <div class="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
+          <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Czy to o Tobie?
+          </h2>
+          <div class="mt-10 grid w-full gap-5 lg:grid-cols-3">
+            <article class="rounded-[2rem] bg-white/60 p-7 shadow-card">
+              <p class="text-lg leading-8 text-ink/78">
+                Boisz się wyjazdów za granicę, bo nigdy nie wiesz jak coś powiedzieć?
+              </p>
+            </article>
+            <article class="rounded-[2rem] bg-white/60 p-7 shadow-card">
+              <p class="text-lg leading-8 text-ink/78">
+                Rozumiesz wszystko co ktoś do Ciebie mówi, ale gdy musisz się odezwać, to masz pustkę w głowie?
+              </p>
+            </article>
+            <article class="rounded-[2rem] bg-white/60 p-7 shadow-card">
+              <p class="text-lg leading-8 text-ink/78">
+                Stresuje Cię mówienie, bo nie chcesz być źle oceniona jeśli popełnisz jakiś błąd?
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+<section id="o-mnie" class="scroll-mt-28 bg-gradient-to-b from-[#faf7ee] via-[#fffdd0] to-[#fbf7eb] px-5 py-16 md:px-8 md:py-24">
+  <div class="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+    <!-- Kontener obrazka - bez ramek i tła -->
+    <div class="mx-auto w-full max-w-[30rem]">
+      <img
+        src="veronika2.png"
+        alt="Poznajmy się!"
+        onerror="this.onerror=null;this.src='veronika.png';"
+        class="about-portrait aspect-[0.9] w-full rounded-[2rem] md:rounded-[2.5rem] object-cover"
+      />
+    </div>
+
+    <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
+      <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+        Poznajmy się!
+      </h2>
+<div class="mt-8 max-w-3xl space-y-6 text-base leading-7 text-ink/80 md:text-lg md:leading-8">
+  
+  <!-- Pierwszy akapit - o Tobie i misji -->
+  <p>
+    Języki obce i komunikacja międzynarodowa od zawsze były ogromną częścią mojego życia. Od kilku lat pomagam kursantom mówić 
+    <span class="font-semibold text-olive">swobodnie, pewnie i bez strachu</span> przed popełnianiem błędów.
+  </p>
+
+  <!-- Drugi akapit - konkretne doświadczenie (wyróżnione wizualnie) -->
+  <div class="relative border-l-2 border-olive/20 pl-6 my-8">
+    <p class="italic">
+      Ukończyłam studia filologiczne i lingwistyczne, znam 6 języków obcych i pracowałam jako 
+      <span class="text-ink font-medium">tłumaczka międzynarodowa oraz stewardessa</span>, co pokazało mi, jak ważny jest język w codziennym życiu.
+    </p>
+  </div>
+
+  <!-- Trzeci akapit - Twój "system" i podsumowanie -->
+  <p>
+    To właśnie te doświadczenia sprawiły, że uczę w zupełnie inny sposób. <br> Dla mnie angielski to nie tylko gramatyka, ale przede wszystkim 
+    <span class="font-semibold text-olive">narzędzie dające wolność</span> i nowe możliwości.
+  </p>
+
+</div>
+    </div>
+  </div>
+</section>
+
+<section id="jak-pracujemy" class="scroll-mt-28 bg-gradient-to-b from-[#fbf7eb] via-[#f8f5ea] to-[#f6f2e6] px-5 py-16 md:px-8 md:py-24">
+  <div class="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+    
+    <!-- Nagłówek -->
+    <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+      Jak pracujemy?
+    </h2>
+    
+    <!-- Mniejszy tekst o poziomach -->
+    <p class="mt-3 text-lg font-medium text-olive/80  tracking-wide italic">
+      kurs przeznaczony dla poziomów A2, B1
+    </p>
+
+    <!-- Wyśrodkowana karta z listą -->
+    <div class="mt-10 w-full max-w-xl">
+      <article class="rounded-[2.5rem] bg-white/60 p-8 md:p-12 shadow-soft backdrop-blur-sm">
+        <ul class="inline-block space-y-5 text-left text-lg leading-7 text-ink/78">
+          <li class="flex items-center gap-4">
+            <i data-lucide="check" class="h-6 w-6 shrink-0 text-olive"></i>
+            <span>12 spotkań – 1x w tygodniu</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <i data-lucide="check" class="h-6 w-6 shrink-0 text-olive"></i>
+            <span>Elastyczne godziny zajęć</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <i data-lucide="check" class="h-6 w-6 shrink-0 text-olive"></i>
+            <span>Małe, kameralne grupy (do 6 osób)</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <i data-lucide="check" class="h-6 w-6 shrink-0 text-olive"></i>
+            <span>Maksimum konwersacji i praktyki</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <i data-lucide="check" class="h-6 w-6 shrink-0 text-olive"></i>
+            <span>Tematyka z życia wzięta (podróże, praca)</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <i data-lucide="check" class="h-6 w-6 shrink-0 text-olive"></i>
+            <span>Zero oceniania i stresu</span>
+          </li>
+          <li class="flex items-center gap-4">
+            <i data-lucide="check" class="h-6 w-6 shrink-0 text-olive"></i>
+            <span>Wspierająca, przyjazna atmosfera</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<section id="cennik" class="scroll-mt-28 bg-gradient-to-b from-[#f6f2e6] via-[#f5f1e4] to-[#f7f3e8] px-5 py-16 md:px-8 md:py-24">
+  <div class="mx-auto flex w-full max-w-4xl flex-col items-center">
+    
+    <!-- Główny nagłówek sekcji -->
+    <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+      Cennik
+    </h2>
+    
+    <!-- Podtytuł pod nagłówkiem (opcjonalnie, dla spójności ze stylem) -->
+    <p class="mt-3 mb-10 text-lg font-medium text-olive/80 tracking-wide italic">
+      Inwestycja w Twoją przyszłość
+    </p>
+    <!-- Płynna karta bez widocznych podziałów wewnątrz -->
+    <article class="w-full rounded-[2.5rem] bg-white/60 p-8 md:p-14 shadow-card">
+      
+      <!-- Nagłówek -->
+       
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+          848 zł <span class="font-light italic text-olive">za kurs</span>
+        </h2>
+        <p class="mt-3 text-lg font-medium text-olive/80 tracking-wide italic">
+          możliwość płatności w ratach
+        </p>
+      </div>
+
+      <!-- Płynna lista korzyści (bez kresek) -->
+      <div class="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-x-12 md:gap-y-6">
+        
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">12 spotkań online
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">praktyczny angielski do życia</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">przełamywanie blokady</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">kameralne grupy (do 6 osób)</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">poziomy A2 / B1</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">autorskie materiały</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">szlifowanie wymowy</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <i data-lucide="check" class="h-5 w-5 shrink-0 text-olive opacity-70"></i>
+          <span class="text-lg text-ink/78 tracking-tight">wzajemna motywacja</span>
+        </div>
+
+      </div>
+
+      <!-- Przycisk wkomponowany w dół karty -->
+      <div class="mt-14 text-center">
+        <a href="#kontakt" class="inline-block rounded-full bg-olive px-12 py-5 text-lg font-semibold text-cream transition hover:scale-105 shadow-soft">
+          Zapisuję się <span class="font-light italic ml-1">na kurs</span>
+        </a>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+
+      <section id="kontakt" class="scroll-mt-28 bg-gradient-to-b from-[#f7f3e8] via-[#faf8ef] to-[#fdfbf3] px-5 py-16 md:px-8 md:py-24">
+        <div class="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+          <h2 class="max-w-3xl text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
+            Zapisz się na wakacyjny kurs angielskiego i przełam blokadę w mówieniu!
+          </h2>
+
+          <form id="contact-form" class="mt-10 w-full rounded-[2rem] bg-white/65 p-6 text-left shadow-card md:p-8">
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold text-ink">Imię i nazwisko</span>
+                <input
+                  type="text"
+                  name="full_name"
+                  required
+                  class="w-full rounded-2xl bg-white px-4 py-3 text-base text-ink outline-none ring-1 ring-olive/10 transition focus:ring-2 focus:ring-olive/30"
+                />
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold text-ink">Email</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="w-full rounded-2xl bg-white px-4 py-3 text-base text-ink outline-none ring-1 ring-olive/10 transition focus:ring-2 focus:ring-olive/30"
+                />
+              </label>
+            </div>
+
+            <label class="mt-5 block">
+              <span class="mb-2 block text-sm font-semibold text-ink">Nazwa użytkownika na Instagramie</span>
+              <input
+                type="text"
+                name="instagram"
+                class="w-full rounded-2xl bg-white px-4 py-3 text-base text-ink outline-none ring-1 ring-olive/10 transition focus:ring-2 focus:ring-olive/30"
+              />
+            </label>
+
+            <fieldset class="mt-6">
+              <legend class="text-sm font-semibold text-ink">Poziom</legend>
+              <div class="mt-3 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+                <label class="inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 ring-1 ring-olive/10">
+                  <input type="radio" name="level" value="A2" required class="h-4 w-4 accent-[#556B2F]" />
+                  <span class="text-base text-ink">A2</span>
+                </label>
+                <label class="inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 ring-1 ring-olive/10">
+                  <input type="radio" name="level" value="B1" required class="h-4 w-4 accent-[#556B2F]" />
+                  <span class="text-base text-ink">B1</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <button
+              type="submit"
+              class="mt-8 inline-flex w-full items-center justify-center rounded-full bg-olive px-8 py-4 text-base font-semibold text-cream shadow-soft transition hover:bg-oliveSoft"
+            >
+              ZAPISUJĘ SIĘ
+            </button>
+            <p id="form-status" class="mt-4 min-h-[3rem] text-sm leading-6 text-ink/75" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+<section id="opinie" class="relative scroll-mt-28 bg-gradient-to-b from-[#fdfbf3] via-[#faf8ef] to-[#f7f3e8] py-16 md:py-24 overflow-hidden">
+  <div class="mx-auto w-full max-w-7xl px-4 md:px-8">
+    
+    <!-- Nagłówek -->
+    <h2 class="text-center text-2xl font-light tracking-tight text-gray-800 sm:text-4xl mb-12">
+      Zobacz jak kursantki oceniają <span class="font-semibold italic text-olive">naukę z nami</span>
+    </h2>
+
+    <div class="relative px-2 md:px-12">
+      <!-- Strzałka w lewo (widoczna od razu) -->
+      <button 
+        onclick="scrollCarousel('left')"
+        class="absolute left-0 top-1/2 z-20 -translate-y-1/2 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-olive text-cream shadow-lg transition-transform hover:scale-110 active:scale-95"
+        aria-label="Poprzednia opinia"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Kontener Karuzeli -->
+      <div 
+        id="carousel-track"
+        class="flex gap-4 md:gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8 no-scrollbar cursor-grab active:cursor-grabbing"
+      >
+        <!-- Obrazy opinii (ujednolicona wysokość, szerokość auto) -->
+        <img src="opinie/IMG_8479.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8480.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8481.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8482.JPG" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8483.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8484.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8485.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8486.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8487.JPG" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8488.JPG" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8489.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8490.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+        <img src="opinie/IMG_8491.jpg" alt="Opinia" class="h-[450px] md:h-[550px] w-auto snap-center rounded-[2rem] shadow-md object-contain bg-white/30" />
+      </div>
+
+      <!-- Strzałka w prawo (widoczna od razu) -->
+      <button 
+        onclick="scrollCarousel('right')"
+        class="absolute right-0 top-1/2 z-20 -translate-y-1/2 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-olive text-cream shadow-lg transition-transform hover:scale-110 active:scale-95"
+        aria-label="Następna opinia"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Podpowiedź dla użytkowników mobilnych -->
+    <p class="mt-6 text-center text-sm text-olive/50 font-medium md:hidden italic">
+      Przesuń palcem, aby zobaczyć więcej →
+    </p>
+  </div>
+</section>
+
+<style>
+  /* Ukrycie paska przewijania przy zachowaniu funkcjonalności */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<script>
+  function scrollCarousel(direction) {
+    const track = document.getElementById('carousel-track');
+    // Obliczamy szerokość jednego elementu, aby przewijać precyzyjnie o jeden obrazek
+    const scrollAmount = track.clientWidth * 0.8; 
+    if (direction === 'left') {
+      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }
+</script>
+
+      <section class="bg-gradient-to-b from-[#f7f3e8] via-[#f6f2e6] to-[#f8f5ea] px-5 py-16 md:px-8 md:py-24">
+        <div class="mx-auto flex w-full max-w-5xl flex-col items-center rounded-[2rem] bg-white/55 px-6 py-10 text-center shadow-soft md:px-10">
+          <p class="max-w-4xl text-xl leading-9 text-ink sm:text-2xl sm:leading-10">
+            Gotowa/y mówić po angielsku pewniej?<br>
+            Nie czekaj na perfekcyjny moment ani perfekcyjny poziom. <br>
+            Zacznij mówić, a reszta przyjdzie z czasem
+
+          </p>
+          <a
+            href="#kontakt"
+            class="mt-8 inline-flex items-center justify-center rounded-full bg-olive px-8 py-4 text-base font-semibold text-cream shadow-soft transition hover:bg-oliveSoft"
+          >
+            Zapisuję się na kurs
+          </a>
+          <h2>
+            dzisiaj jest znizka co, jesli nie zdazych to miejsce przepadnie
+          </h2>
+        </div>
+      </section>
+
+      <section id="faq" class="scroll-mt-28 bg-gradient-to-b from-[#f8f5ea] via-[#faf8ef] to-[#fffef8] px-5 pb-24 pt-16 md:px-8 md:pb-28 md:pt-24">
+        <div class="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+          <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">FAQ</h2>
+
+          <div class="mt-10 w-full space-y-4 text-left">
+            <article class="faq-item rounded-[1.75rem] bg-white/65 shadow-card" data-open="false">
+              <button type="button" class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left" data-faq-trigger>
+                <span class="text-base font-semibold text-ink sm:text-lg">Czy muszę mieć jakiś poziom angielskiego?</span>
+                <span class="faq-plus text-2xl font-light text-olive transition">+</span>
+              </button>
+              <div class="faq-panel">
+                <div>
+                  <p class="px-6 pb-6 text-base leading-7 text-ink/76">
+                    Tak, poziom A2/B1. Przed startem pomożemy Ci dobrać grupę.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="faq-item rounded-[1.75rem] bg-white/65 shadow-card" data-open="false">
+              <button type="button" class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left" data-faq-trigger>
+                <span class="text-base font-semibold text-ink sm:text-lg">Ile czasu dziennie muszę poświęcić?</span>
+                <span class="faq-plus text-2xl font-light text-olive transition">+</span>
+              </button>
+              <div class="faq-panel">
+                <div>
+                  <p class="px-6 pb-6 text-base leading-7 text-ink/76">
+                    Nie musisz spędzać godzin nad książkami. Kurs jest stworzony tak, by pogodzić go z życiem.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="faq-item rounded-[1.75rem] bg-white/65 shadow-card" data-open="false">
+              <button type="button" class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left" data-faq-trigger>
+                <span class="text-base font-semibold text-ink sm:text-lg">Co jeśli opuszczę zajęcia?</span>
+                <span class="faq-plus text-2xl font-light text-olive transition">+</span>
+              </button>
+              <div class="faq-panel">
+                <div>
+                  <p class="px-6 pb-6 text-base leading-7 text-ink/76">
+                    Otrzymasz materiały, dzięki którym nadrobisz temat.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="faq-item rounded-[1.75rem] bg-white/65 shadow-card" data-open="false">
+              <button type="button" class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left" data-faq-trigger>
+                <span class="text-base font-semibold text-ink sm:text-lg">Czym ten kurs się różni?</span>
+                <span class="faq-plus text-2xl font-light text-olive transition">+</span>
+              </button>
+              <div class="faq-panel">
+                <div>
+                  <p class="px-6 pb-6 text-base leading-7 text-ink/76">
+                    Skupiamy się na mówieniu, a nie na wkuwaniu gramatyki. Budujemy pewność siebie w bezpiecznej atmosferze.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+
+      const carouselTrack = document.querySelector("[data-carousel-track]");
+      const menuToggle = document.querySelector("[data-menu-toggle]");
+      const mobileMenu = document.querySelector("[data-mobile-menu]");
+      const mobileLinks = document.querySelectorAll("[data-mobile-link]");
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = !mobileMenu.classList.contains("hidden");
+          mobileMenu.classList.toggle("hidden");
+          menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        });
+
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            menuToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      if (carouselTrack) {
+        carouselTrack.innerHTML += carouselTrack.innerHTML;
+      }
+
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach((item) => {
+        const trigger = item.querySelector("[data-faq-trigger]");
+
+        trigger.addEventListener("click", () => {
+          const isOpen = item.dataset.open === "true";
+
+          faqItems.forEach((otherItem) => {
+            otherItem.dataset.open = "false";
+          });
+
+          item.dataset.open = isOpen ? "false" : "true";
+        });
+      });
+
+      const contactForm = document.querySelector("#contact-form");
+      const formStatus = document.querySelector("#form-status");
+
+      if (contactForm && formStatus) {
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          if (!contactForm.checkValidity()) {
+            contactForm.reportValidity();
+            return;
+          }
+
+          formStatus.textContent =
+            "Dziękuję za przesłanie formularza. W ciągu 24 godzin otrzymasz informacje na temat wolnych terminów. W międzyczasie zapraszam na moje konto na Instagramie, gdzie znajdziesz wiele ciekawych materiałów i darmową dawkę wiedzy.";
+          contactForm.reset();
+        });
+      }
+
+      const revealTargets = document.querySelectorAll(
+        "main section > div, main section article, main section form, main section img, main section h1, main section h2, .faq-item"
+      );
+
+      revealTargets.forEach((element, index) => {
+        element.classList.add("reveal-on-scroll");
+        element.style.setProperty("--reveal-delay", `${(index % 6) * 70}ms`);
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add("reveal-visible");
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.14,
+          rootMargin: "0px 0px -8% 0px",
+        }
+      );
+
+      revealTargets.forEach((element) => revealObserver.observe(element));
+    </script>
+  </body>
+</html>
